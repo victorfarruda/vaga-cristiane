@@ -1,5 +1,8 @@
+import logging
+
 from database.tabela_comando_pendente import ComandoPendente
 from database.tabela_tratamento_string_recebida import TratamentoStringRecebida
+from logging import log
 
 
 class GatewayTratamento:

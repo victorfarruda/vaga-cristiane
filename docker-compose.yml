@@ -21,3 +21,11 @@ services:
             - private_network_library
         volumes:
             - db_volume:/var/lib/postgresql/data
+
+    tratamento:
+        build: .
+        working_dir: /src/tratamento
+        networks:
+          - private_network_library
+        depends_on:
+          - db
