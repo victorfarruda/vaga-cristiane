@@ -6,7 +6,7 @@ class Conexao(object):
 
     def __init__(self):
         self._db = psycopg2.connect(
-            host='database_library',
+            host='localhost',
             database='database',
             user='postgres_user',
             password='postgres_password'
@@ -16,6 +16,7 @@ class Conexao(object):
         try:
             cur = self._db.cursor()
             cur.execute(sql, *args, **kwargs)
+            self._db.commit()
         except:
             return False
         return True
@@ -69,7 +70,7 @@ class BaseString:
         if created is not True:
             raise 'Erro com Base de dados'
 
-    def insert_into_string_recebida(self, values):
+    def insert_into(self, values):
         return self.conn.execute_and_commit(self.SQL_INSERT, (values,))
 
     def select_by_id(self, _id):
