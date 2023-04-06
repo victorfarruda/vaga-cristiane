@@ -55,11 +55,11 @@ class Conexao(object):
         self._db.close()
 
 
-class BaseString:
+class Base:
     SQL_CREATE = ''
     SQL_INSERT = ''
     SQL_SELECT_ALL = ''
-    SQL_SELECT_BY_ID = ''
+    SQL_SELECT_LAST = ''
 
     def __init__(self):
         self.conn = Conexao()
@@ -73,8 +73,8 @@ class BaseString:
     def insert_into(self, values):
         return self.conn.execute_and_commit(self.SQL_INSERT, (values,))
 
-    def select_by_id(self, _id):
-        return self.conn.select_one(self.SQL_SELECT_BY_ID, (_id,))
+    def select_last(self):
+        return self.conn.select_one(self.SQL_SELECT_LAST)
 
     def select_all(self):
         result = self.conn.select_all(self.SQL_SELECT_ALL)

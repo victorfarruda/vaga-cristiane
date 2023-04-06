@@ -1,4 +1,4 @@
-from database.conn import BaseString
+from database.conn import Base
 from database.query import (
     SQL_CREATE_TABLE_TRATAMENTO_COMANDO_RECEBIDO,
     SQL_INSERT_TRATAMENTO_COMANDO_RECEBIDO,
@@ -6,7 +6,7 @@ from database.query import (
 )
 
 
-class TratamentoComandoRecebido(BaseString):
+class TratamentoComandoRecebido(Base):
     SQL_CREATE = SQL_CREATE_TABLE_TRATAMENTO_COMANDO_RECEBIDO
     SQL_INSERT = SQL_INSERT_TRATAMENTO_COMANDO_RECEBIDO
     SQL_SELECT_ALL = SQL_SELECT_ALL_TRATAMENTO_COMANDO_RECEBIDO
