@@ -13,8 +13,6 @@ class ComandoPendente(Base):
     SQL_SELECT_ALL = SQL_SELECT_ALL_COMANDO_PENDENTE
     SQL_SELECT_LAST = SQL_SELECT_LAST_COMANDO_PENDENTE
 
-
-if __name__ == '__main__':
-    s = ComandoPendente()
-    s.insert_into('teste1;teste2;teste3;teste4')
-    s.select_all()
+    def __init__(self):
+        super().__init__()
+        self.insert_into('teste4;teste5;teste6;teste7')

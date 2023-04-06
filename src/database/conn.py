@@ -31,7 +31,7 @@ class Conexao(object):
         except:
             return False
 
-    def select_one(self, sql, *args, **kwargs):
+    def select_um(self, sql, *args, **kwargs):
         result = None
         try:
             cur = self._db.cursor()
@@ -41,7 +41,7 @@ class Conexao(object):
             return None
         return result
 
-    def select_all(self, sql):
+    def select_todos(self, sql):
         result = None
         try:
             cur = self._db.cursor()
@@ -74,8 +74,8 @@ class Base:
         return self.conn.execute_and_commit(self.SQL_INSERT, (values,))
 
     def select_last(self):
-        return self.conn.select_one(self.SQL_SELECT_LAST)
+        return self.conn.select_um(self.SQL_SELECT_LAST)
 
     def select_all(self):
-        result = self.conn.select_all(self.SQL_SELECT_ALL)
+        result = self.conn.select_todos(self.SQL_SELECT_ALL)
         return result

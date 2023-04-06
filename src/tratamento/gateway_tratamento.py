@@ -15,13 +15,10 @@ class GatewayTratamento:
         self.tratamento_string_recebida.insert_into(string)
 
     def run(self):
-        logging.log(logging.INFO, 'RODANDO')
-        print('RODANDO print')
         results = self.comando_pendente.select_all()
         for _id, campos, processado in results:
             self.tratamento_string_recebida.insert_into(campos)
             self.comando_pendente.marcar_como_processado(_id)
-            print('último id processado', _id)
 
 
 gateway_tratamento = GatewayTratamento()
