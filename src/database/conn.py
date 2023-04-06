@@ -6,7 +6,7 @@ class Conexao(object):
 
     def __init__(self):
         self._db = psycopg2.connect(
-            host='localhost',
+            host='database_library',
             database='database',
             user='postgres_user',
             password='postgres_password'

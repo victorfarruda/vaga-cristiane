@@ -6,7 +6,7 @@ from database.tabela_comando_recebido import ComandoRecebido
 
 class GatewayEntrada:
     def __init__(self):
-        addr = (socket.gethostname(), 7000)
+        addr = ('10.5.0.5', 7000)
         self.server_socket = socket.socket()
         self.server_socket.bind(addr)
         self.server_socket.listen(1)
@@ -29,6 +29,8 @@ class GatewayEntrada:
         conn.close()  # close the connection
 
 
-# if __name__ == '__main__':
 gateway_entrada = GatewayEntrada()
-    # gateway_entrada.run()
+
+
+if __name__ == '__main__':
+    gateway_entrada.run()
