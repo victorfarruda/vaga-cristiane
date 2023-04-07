@@ -18,8 +18,8 @@ class GatewayEntrada:
         conn, address = self.server_socket.accept()
         data = conn.recv(1024).decode()
         if data:
-            _id = self.comando_recebido.insert_into(data)
-            id, campos = self.comando_pendente.select_last()
+            self.comando_recebido.insert_into(data)
+            _id, campos = self.comando_pendente.select_last()
             conn.send(campos.encode())
         conn.close()
 

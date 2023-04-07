@@ -1,8 +1,4 @@
-import logging
-
-
 from database.tabela_tratamento_comando_recebido import TratamentoComandoRecebido
-
 from database.tabela_comando_recebido import ComandoRecebido
 
 

@@ -38,7 +38,7 @@ class Conexao(object):
             cur.execute(sql, *args, **kwargs)
             result = cur.fetchone()
         except:
-            return None
+            return None, None
         return result
 
     def select_todos(self, sql):
