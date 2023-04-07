@@ -37,5 +37,6 @@ docker-compose up tratamento
 
 Para rodar os testes você pode usar o comando:
 ```
+docker-compose build testes
 docker-compose up testes
 ```
