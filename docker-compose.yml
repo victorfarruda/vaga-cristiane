@@ -39,7 +39,7 @@ services:
 
     entrada:
         environment:
-          INSERSAO_MANUAL: 'MANUAL;mensagem4'
+          INSERSAO_MANUAL: 'campo1;campo2;campo3;campo4'
         container_name: entrada
         build:
           context: .
@@ -56,7 +56,7 @@ services:
 
     cliente:
         environment:
-          MENSAGEM_CLIENTE: 'nova;mensagem2;mensagem3;mensagem4'
+          MENSAGEM_CLIENTE: 'm1;mensagem2;mensagem3;mensagem4'
         build:
           context: .
           dockerfile: cliente.Dockerfile
