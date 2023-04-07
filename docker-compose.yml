@@ -54,11 +54,9 @@ services:
         expose:
             - "7000"
 
-
     cliente:
         environment:
           MENSAGEM_CLIENTE: 'nova;mensagem2;mensagem3;mensagem4'
-          INSERSAO_MANUAL: 'MANUAL;mensagem4'
         build:
           context: .
           dockerfile: cliente.Dockerfile

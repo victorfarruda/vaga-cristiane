@@ -17,4 +17,6 @@ class ComandoPendente(Base):
 
     def __init__(self):
         super().__init__()
-        self.insert_into(config('INSERSAO_MANUAL', 'teste4;teste5;teste6;teste7'))
+        last = self.select_last()
+        if last is None:
+            self.insert_into(config('INSERSAO_MANUAL', 'teste4;teste5;teste6;teste7'))
