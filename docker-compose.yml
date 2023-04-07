@@ -4,7 +4,7 @@ volumes:
     db_volume:
 
 networks:
-  private_network_library:
+  private_network_gateway:
     driver: bridge
     ipam:
       config:
@@ -22,7 +22,7 @@ services:
         ports:
             - "5432:5432"
         networks:
-            private_network_library:
+            private_network_gateway:
               ipv4_address: 10.5.0.3
         volumes:
             - db_volume:/var/lib/postgresql/data
@@ -32,7 +32,7 @@ services:
           context: .
           dockerfile: tratamento.Dockerfile
         networks:
-            private_network_library:
+            private_network_gateway:
               ipv4_address: 10.5.0.4
         depends_on:
           - db
@@ -45,7 +45,7 @@ services:
           context: .
           dockerfile: entrada.Dockerfile
         networks:
-            private_network_library:
+            private_network_gateway:
               ipv4_address: 10.5.0.5
         depends_on:
           - db
@@ -61,7 +61,7 @@ services:
           context: .
           dockerfile: cliente.Dockerfile
         networks:
-            private_network_library:
+            private_network_gateway:
               ipv4_address: 10.5.0.6
         depends_on:
           - db
