@@ -1,5 +1,4 @@
-import socket
-
+from . import socket
 from database.tabela_comando_pendente import ComandoPendente
 from database.tabela_comando_recebido import ComandoRecebido
 
@@ -14,13 +13,16 @@ class GatewayEntrada:
         self.comando_recebido = ComandoRecebido()
         self.comando_pendente = ComandoPendente()
 
+    def processar(self, data, conn):
+        self.comando_recebido.insert_into(data)
+        _id, campos = self.comando_pendente.select_last()
+        conn.send(campos.encode())
+
     def run(self):
         conn, address = self.server_socket.accept()
         data = conn.recv(1024).decode()
         if data:
-            self.comando_recebido.insert_into(data)
-            _id, campos = self.comando_pendente.select_last()
-            conn.send(campos.encode())
+            self.processar(data, conn)
         conn.close()
 
 
