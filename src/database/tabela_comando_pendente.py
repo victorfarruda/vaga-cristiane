@@ -1,3 +1,5 @@
+from decouple import config
+
 from database.conn import Base
 from database.query import (
     SQL_CREATE_TABLE_COMANDO_PENDENTE,
@@ -15,4 +17,4 @@ class ComandoPendente(Base):
 
     def __init__(self):
         super().__init__()
-        self.insert_into('teste4;teste5;teste6;teste7')
+        self.insert_into(config('INSERSAO_MANUAL', 'teste4;teste5;teste6;teste7'))
