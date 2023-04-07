@@ -3,14 +3,6 @@ version: "3.8"
 volumes:
     db_volume:
 
-networks:
-  private_network_gateway:
-    driver: bridge
-    ipam:
-      config:
-        - subnet: 10.5.0.0/16
-          gateway: 10.5.0.1
-
 services:
     db:
         image: postgres:11.7
@@ -21,19 +13,12 @@ services:
             - POSTGRES_PASSWORD=postgres_password
         ports:
             - "5432:5432"
-        networks:
-            private_network_gateway:
-              ipv4_address: 10.5.0.3
         volumes:
             - db_volume:/var/lib/postgresql/data
 
     tratamento:
-        build:
-          context: .
-          dockerfile: tratamento.Dockerfile
-        networks:
-            private_network_gateway:
-              ipv4_address: 10.5.0.4
+        build: .
+        entrypoint: ["python", "/src/main_tratamento.py"]
         depends_on:
           - db
 
@@ -41,12 +26,8 @@ services:
         environment:
           INSERSAO_MANUAL: 'campo1;campo2;campo3;campo4'
         container_name: entrada
-        build:
-          context: .
-          dockerfile: entrada.Dockerfile
-        networks:
-            private_network_gateway:
-              ipv4_address: 10.5.0.5
+        build: .
+        entrypoint: ["python", "/src/main_entrada.py"]
         depends_on:
           - db
         ports:
@@ -57,12 +38,14 @@ services:
     cliente:
         environment:
           MENSAGEM_CLIENTE: 'm1;mensagem2;mensagem3;mensagem4'
-        build:
-          context: .
-          dockerfile: cliente.Dockerfile
-        networks:
-            private_network_gateway:
-              ipv4_address: 10.5.0.6
+        build: .
+        entrypoint: ["python", "/src/entrada/cliente.py"]
         depends_on:
           - db
           - entrada
+
+    testes:
+        build: .
+        entrypoint: ["/bin/bash", "-c", "pytest --cov --cov-report term-missing"]
+        volumes:
+            - ./src:/src

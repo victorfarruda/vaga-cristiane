@@ -77,5 +77,4 @@ class Base:
         return self.conn.select_um(self.SQL_SELECT_LAST)
 
     def select_all(self):
-        result = self.conn.select_todos(self.SQL_SELECT_ALL)
-        return result
+        return self.conn.select_todos(self.SQL_SELECT_ALL)
